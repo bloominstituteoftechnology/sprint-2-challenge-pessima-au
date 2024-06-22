@@ -6,32 +6,121 @@
   <script id="challenge">
     // 👉 CHALLENGE 1
     function profileActivation(profile, reason) {
-
-    }
+      if (profile.active) {
+        if (!reason) {
+          return 'confirm status manually'
+        }
+        else {
+          profile.active = false;
+          profile.reason = reason;
+        }
+      }
+      else {
+        profile.active = true;
+        delete profile.reason;
+      }
+      return profile;
+        }
+    
+    
+    
 
     // 👉 CHALLENGE 2
     function mineSweeper(grid, x, y) {
+      if (x < 1 || x > 3 || y < 1 || y > 3) {
+        return "invalid coordinates"
+      }
+      let xIndex = x -1;
+      let yIndex = y -1;
 
+      if (grid[yIndex][xIndex] === "🟥") {
+        return "🟥 💀";
+      }
+      else if (grid[yIndex][xIndex] === "🟦") {
+        return "🟦 🥳";
+      }
+
+      return "invalid grid content";
     }
+
 
     // 👉 CHALLENGE 3
     function booleanize(obj) {
+        for (let key in obj) {
+          if (key.length > 9) {
+            return "shorten all prop names to 9 chars or less";
+          }
 
-    }
+          for (let key in obj) {
+            let value = obj[key];
+
+            if (value === 0) {
+              obj[key] = false;
+            }
+            else if (value === 1) {
+              obj[key] = true;
+            }
+            else if (value === null) {
+              delete obj[key];
+            }
+          }
+
+          return obj;
+        }
+
+      }
 
     // 👉 CHALLENGE 4
     function scrub(text, forbidden) {
+        if (text.length === 0 || forbidden.length ===0) {
+          return text;
+        }
 
+        let words = text.split(' ');
+
+        for (let i = 0; i < words.length; i++) {
+          if (forbidden.includes(words[i])) {
+            words[i] = 'x'.repeat(words[i].length);
+          }
+        }
+
+        return words.join(' ');
     }
+
 
     // 👉 CHALLENGE 5 (bonus, NOT graded)
     function normalizePhoneNumber(num) {
+        let areaCode = num.slice(0, 3);
+        let centralOfficeCode = num.slice(3, 6);
+        let stationCode = num.slice(6, 10);
 
+        let formattedNumber = `(${areaCode}) ${centralOfficeCode}-${stationCode}`;
+
+        return formattedNumber;
     }
 
     // 👉 CHALLENGE 6 (bonus, NOT graded)
     function diceRolls() {
+        let totalRolls = 0;
+        let consecutiveSixes = 0;
 
+        while (ttrue) {
+          let roll = math.floor(math.random() * 6) + 1;
+          totalRolls++;
+
+          if (roll = 6) {
+            consecutiveSixes++;
+            
+            if (consecutiveSixes === 3) {
+              break;
+            }
+            
+          }
+          else {
+              consecutiveSixes = 0;
+            }
+        }
+        return totalRolls;
     }
 
     // 🧪 DO NOT make any changes below this line ===================
